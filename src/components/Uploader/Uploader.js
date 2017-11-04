@@ -31,7 +31,10 @@ class Uploader extends Component{
           <p>Accepted files:</p>
           <ul>
           {
-            this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
+            this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes
+            <div>
+              {(f.preview)}
+            </div> </li>)
           }
         </ul>
           <p>Rejected files: </p>

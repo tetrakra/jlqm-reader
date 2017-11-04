@@ -4,3 +4,15 @@
   outline: 2px dotted black;
   background-color: slategray;
 }
+
+#Dropzone div{
+  margin: 0 auto;
+  min-width: 640px;
+  background-color: gold;
+}
+
+#Dropzone p{
+  font-size: 2em;
+  letter-spacing: 0.25em;
+
+}
