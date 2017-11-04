@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 import './reader.css';
+
 
 class Reader extends Component{
 
@@ -13,4 +15,4 @@ class Reader extends Component{
   }
 }
 
-export default Reader;
+export default connect()(Reader);

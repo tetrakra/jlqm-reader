@@ -15,7 +15,7 @@ class App extends Component {
         </header>
         <p className="App-intro">
           To get started, drop <code>a JLQM file</code> into the box and
-          <i>watch the magic</i>.
+          <i> watch the magic</i>.
         </p>
 
         <Uploader />

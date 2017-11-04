@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
+import { Panel } from 'react-bootstrap';
 import './uploader.css';
 
 import Dropzone from 'react-dropzone'
@@ -28,25 +30,30 @@ class Uploader extends Component{
           </Dropzone>
         </div>
         <div>
-          <p>Accepted files:</p>
-          <ul>
-          {
-            this.state.files.map(f => <li key={f.name}>{f.name} - {f.size} bytes
-            <div>
-              {(f.preview)}
-            </div> </li>)
-          }
-        </ul>
-          <p>Rejected files: </p>
-          <ul>
-          {
-            this.state.rejected.map(f => <li key={f.name}>{f.name} - {f.size} bytes</li>)
-          }
-        </ul>
+            <Panel>
+              <p>Accepted files:</p>
+              <ul className="list-group">
+              {
+                this.state.files.map(f => <li className="list-group-item"
+                  key={f.name}>{f.name} - {f.size}
+                  bytes
+                </li>)
+              }
+            </ul>
+              <p>Rejected files: </p>
+              <ul className="list-group">
+              {
+                this.state.rejected.map(f => <li className="list-group-item"
+                  key={f.name}>{f.name} - {f.size}
+                  bytes
+                </li>)
+              }
+            </ul>
+          </Panel>
         </div>
       </div>
     )
   }
 }
 
-export default Uploader
+export default connect()(Uploader)
