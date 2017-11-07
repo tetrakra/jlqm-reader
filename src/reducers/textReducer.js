@@ -6,7 +6,8 @@ export default function jlqm(state = initialState.text, action) {
   switch (action.type) {
     case READ_JLQM:
       console.log('reading...');
-      return action.payload;
+      newState = action.payload
+      return newState;
     case FORMAT_JLQM:
       console.log('READ/FORMAT Action')
       return action.payload;
