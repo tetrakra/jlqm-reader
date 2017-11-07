@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import Reader from './components/Reader/Reader.js';
 import Uploader from './components/Uploader/Uploader.js';
 
 class App extends Component {
@@ -19,7 +18,6 @@ class App extends Component {
         </p>
 
         <Uploader />
-        <Reader />
 
       </div>
     );

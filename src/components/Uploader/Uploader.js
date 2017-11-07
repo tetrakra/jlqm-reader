@@ -4,6 +4,8 @@ import { Panel } from 'react-bootstrap';
 import './uploader.css';
 
 import Dropzone from 'react-dropzone';
+
+import Reader from '../Reader/Reader.js';
 import {readJLQM} from '../../actions/actions.js';
 
 class Uploader extends Component{
@@ -12,7 +14,8 @@ class Uploader extends Component{
     super();
     this.state = {
       files: [],
-      rejected:[]
+      rejected:[],
+      rawText:""
     }
   }
 
@@ -44,13 +47,15 @@ class Uploader extends Component{
       this.setJLQM(evt.target.result)
       //evt.target.result has the jlqm text
       //reader does not work with binding of dispatch action
+      //use a promise instead of this ya dummy
     })
     reader.readAsText(this.state.files[evt.target.value]);
 
   }
 
   setJLQM(data){
-    console.log('data is...', data);
+    // console.log('data is...', data);
+    this.setState({rawText:data});
     //dispatch action from here?
     this.props.readJLQM(data)
   }
@@ -88,15 +93,17 @@ class Uploader extends Component{
             </ul>
           </Panel>
         </div>
+        {/* <Reader text={this.props.jlqmRaw}/> */}
+        <Reader />
       </div>
     )
   }
 }
 
-// function mapStateToProps(state){
-//   return{
-//     // state
-//   }
-// }
+function mapStateToProps(state,ownProps){
+  return{
+    jlqmRaw:state.text
+  }
+}
 
-export default connect(null,{readJLQM})(Uploader)
+export default connect(mapStateToProps,{readJLQM})(Uploader)
