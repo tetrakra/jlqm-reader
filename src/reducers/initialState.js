@@ -1,6 +1,5 @@
 export default {
-  jlqm:{},
-  formattedText:"",
+  text:"",
   go:false,
   done:false
 }

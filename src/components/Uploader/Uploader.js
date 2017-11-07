@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import { Panel } from 'react-bootstrap';
 import './uploader.css';
 
-import Dropzone from 'react-dropzone'
+import Dropzone from 'react-dropzone';
+import {readJLQM} from '../../actions/actions';
 
 class Uploader extends Component{
 
@@ -15,9 +16,11 @@ class Uploader extends Component{
     }
   }
 
-  onDrop = (accepted,rejected) => {
-    console.log('accepted/rejected files :',accepted,rejected);
-    this.setState({files:accepted,rejected:rejected});
+  onDrop = (file) => {
+    console.log('accepted/rejected files :',file);
+    this.setState({files:file});
+
+
   }
 
   render(){
@@ -25,7 +28,7 @@ class Uploader extends Component{
       <div>
         <h3>Dropzone here:</h3>
         <div id="Dropzone">
-          <Dropzone onDrop={this.onDrop}>
+          <Dropzone onDrop={this.onDrop} >
             <p>Feed me your JLQMs, ;3</p>
           </Dropzone>
         </div>
@@ -56,4 +59,10 @@ class Uploader extends Component{
   }
 }
 
-export default connect()(Uploader)
+function mapStateToProps(state){
+  return{
+    // state
+  }
+}
+
+export default connect(mapStateToProps,{readJLQM})(Uploader)

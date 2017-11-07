@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import jlqm from './jlqmReducer';
+import jlqm from './textReducer';
 
 const rootReducer = combineReducers({
-  jlqm
+  text:jlqm
 });
 
 export default rootReducer;
