@@ -2,6 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## JLQM Reader
 * Just a tiny baby web based utility to extract plain text from JLQM files from Android note taking apps
+* File reader operation should be rewritten either as a module or reducer, needs promises maybe
+
+- 11/08/17: Reads raw text of JLQM file and spits it out unformatted
 
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).

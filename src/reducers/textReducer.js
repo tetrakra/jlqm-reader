@@ -1,5 +1,6 @@
 import initialState from './initialState';
-import { READ_JLQM, FORMAT_JLQM, DISPLAY_TEXT } from '../actions/actionTypes';
+import jlqmReader from '../modules/jlqm-reader';
+import { READ_JLQM, FORMAT_JLQM } from '../actions/actionTypes';
 
 export default function jlqm(state = initialState.text, action) {
   let newState;
@@ -10,10 +11,8 @@ export default function jlqm(state = initialState.text, action) {
       return newState;
     case FORMAT_JLQM:
       console.log('READ/FORMAT Action')
-      return action.payload;
-    case DISPLAY_TEXT:
-      newState = action.payload;
-      console.log('DISPLAY Action')
+      const rawText = action.payload;
+
       return newState;
     default:
       return state;

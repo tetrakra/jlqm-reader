@@ -39,6 +39,7 @@ class Uploader extends Component{
   }
 
   selectFile(evt){
+    //this file reading operation shouldn't be done here
     console.log(evt.target.value);
     const reader = new FileReader();
     this.setJLQM.bind(reader);

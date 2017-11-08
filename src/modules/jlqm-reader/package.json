@@ -1,0 +1,22 @@
+{
+  "name": "jlqm-reader",
+  "version": "0.0.1",
+  "description": "A package to extract text from some mobile note-taking apps",
+  "main": "index.js",
+  "engines":{
+    "node": ">=6"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "keywords": [
+    "jlqm",
+    "parse"
+  ],
+  "author": "JT Riddick <riddick.taylor@gmail.com> (http://jtriddick.com)",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1"
+  }
+}
