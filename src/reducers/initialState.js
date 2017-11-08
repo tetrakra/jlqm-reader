@@ -1,5 +1,5 @@
 export default {
   text:"",
-  go:false,
-  done:false
+  done:false,
+  display:false,
 }

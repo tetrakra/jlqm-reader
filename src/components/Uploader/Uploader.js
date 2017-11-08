@@ -6,7 +6,7 @@ import './uploader.css';
 import Dropzone from 'react-dropzone';
 
 import Reader from '../Reader/Reader.js';
-import {readJLQM} from '../../actions/actions.js';
+import { readJLQM, displayOn } from '../../actions/actions.js';
 
 class Uploader extends Component{
 
@@ -59,6 +59,8 @@ class Uploader extends Component{
     this.setState({rawText:data});
     //dispatch action from here?
     this.props.readJLQM(data)
+    //test display state
+    this.props.displayOn();
   }
 
   render(){
@@ -107,4 +109,4 @@ function mapStateToProps(state,ownProps){
   }
 }
 
-export default connect(mapStateToProps,{readJLQM})(Uploader)
+export default connect(mapStateToProps,{readJLQM,displayOn})(Uploader)

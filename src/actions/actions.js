@@ -13,3 +13,15 @@ export const formatJLQM = (raw) => {
     payload:raw
   }
 }
+
+export const displayOn = () => {
+  return {
+    type: types.DISPLAY_ON
+  }
+}
+
+export const displayOff = () => {
+  return {
+    type: types.DISPLAY_OFF
+  }
+}

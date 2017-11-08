@@ -1,9 +1,28 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
+import { displayOff } from '../../actions/actions.js';
 import './reader.css';
 
 
 class Reader extends Component{
+
+  constructor(){
+    super();
+    this.state = {
+      display:false
+    }
+  }
+
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      display:nextProps.display
+    })
+  }
+
+  clearOutput = (evt) => {
+    console.log('clearOutput');
+    this.props.displayOff();
+  }
 
   //mapping own prop to state not doing it
   render(){
@@ -12,8 +31,8 @@ class Reader extends Component{
     return(
       <div>
         <h3>Output goes here:</h3>
-        <div>
-          {this.props.text}
+        <div onClick={(evt)=>this.clearOutput(evt)}>
+          {this.state.display && this.props.text}
         </div>
       </div>
     )
@@ -22,9 +41,10 @@ class Reader extends Component{
 
 function mapStateToProps(state,ownProps){
   return{
-    text:state.text
+    text:state.text,
+    display:state.display
   }
 
 }
 
-export default connect(mapStateToProps)(Reader);
+export default connect(mapStateToProps, { displayOff })(Reader);

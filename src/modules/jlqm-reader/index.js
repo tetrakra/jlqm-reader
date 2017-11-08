@@ -1,4 +1,3 @@
-'use strict';
 
 /**
  * Extracts relevant text from jlqm file

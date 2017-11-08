@@ -11,8 +11,8 @@ export default function jlqm(state = initialState.text, action) {
       return newState;
     case FORMAT_JLQM:
       console.log('READ/FORMAT Action')
-      const rawText = action.payload;
-
+      const rawText = jlqmReader(action.payload);
+      newState['formatted'] = rawText
       return newState;
     default:
       return state;
