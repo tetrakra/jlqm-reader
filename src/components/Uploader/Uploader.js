@@ -80,7 +80,8 @@ class Uploader extends Component{
               <ul className="list-group">
               {
                 this.state.files.map(f => <li className="list-group-item"
-                  key={f.name} onClick={(evt)=>{this.selectFile(evt)}}>{f.name} - {f.size}
+                  key={f.name}
+                  onClick={(evt)=>{this.selectFile(evt)}}>{f.name} - {f.size}
                   bytes
                 </li>)
               }

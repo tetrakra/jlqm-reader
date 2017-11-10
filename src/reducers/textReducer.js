@@ -11,9 +11,11 @@ export default function jlqm(state = initialState.text, action) {
       return newState;
     case FORMAT_JLQM:
       console.log('READ/FORMAT Action')
-      const rawText = jlqmReader(action.payload);
-      newState['formatted'] = rawText
-      return newState;
+      let extractedText;
+      let rawText = jlqmReader(action.payload);
+      console.log('formattedText ', rawText);
+      extractedText = rawText;
+      return Object.assign({},{extractedText});
     default:
       return state;
   }
