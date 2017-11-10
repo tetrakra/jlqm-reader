@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { displayOff,formatJLQM } from '../../actions/actions.js';
+import { displayOff,formatJLQM,selectFile } from '../../actions/actions.js';
 import { Button } from 'react-bootstrap';
 import './reader.css';
 
@@ -25,28 +25,31 @@ class Reader extends Component{
   }
 
   formatText(evt){
+    //make sure a we have text to format
     this.props.formatJLQM(this.props.rawText);
 
   }
 
   clearOutput = (evt) => {
     console.log('clearOutput');
+    this.props.selectFile(false);
     this.props.displayOff();
   }
 
 
   //mapping own prop to state not doing it
   render(){
+    const clickButton = <Button onClick={(evt)=>this.formatText(evt)}>Extract Text from File</Button>;
+    const clearButton = <Button onClick={(evt)=>this.clearOutput(evt)}>Clear Me</Button>;
     console.log('reader props @ render:', this.props)
     console.log('reader state @ render:', this.state)
     return(
       <div>
-        <Button onClick={(evt)=>this.formatText(evt)}>Extract Text from File</Button>
+        {this.props.selectedFile && clickButton}
         <div>
-          {/* {this.state.display && this.format(this.props.text)} */}
-          {this.state.display && (this.props.formattedText || "nothing")}
+          {this.props.formattedText || "Waiting..."}
         </div>
-        <Button onClick={(evt)=>this.clearOutput(evt)}>Clear me</Button>
+        {this.props.selectedFile && clearButton}
       </div>
     )
   }
@@ -54,11 +57,12 @@ class Reader extends Component{
 
 function mapStateToProps(state,ownProps){
   return{
-    rawText: state.text,
+    rawText: state.text.rawText,
     formattedText: state.text.extractedText,
-    display:state.display
+    display:state.display,
+    selectedFile:state.text.fileStatus
   }
 
 }
 
-export default connect(mapStateToProps, { displayOff, formatJLQM })(Reader);
+export default connect(mapStateToProps, { displayOff, formatJLQM, selectFile })(Reader);

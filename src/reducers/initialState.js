@@ -1,5 +1,8 @@
 export default {
-  text:"",
+  text:{
+    rawText:"",
+    fileStatus:false
+  },
   done:false,
   display:false,
 }

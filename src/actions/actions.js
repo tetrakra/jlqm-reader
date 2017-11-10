@@ -25,3 +25,11 @@ export const displayOff = () => {
     type: types.DISPLAY_OFF
   }
 }
+
+export const selectFile = (isSelected = false, fileName) => {
+  return {
+    type: types.SELECT_FILE,
+    payload: isSelected,
+    fileName: fileName
+  }
+}

@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 import Uploader from './components/Uploader/Uploader.js';
+import Reader from './components/Reader/Reader.js';
 
 class App extends Component {
   render() {
@@ -18,6 +19,8 @@ class App extends Component {
         </p>
 
         <Uploader />
+        <Reader />
+
 
       </div>
     );

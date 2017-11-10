@@ -5,8 +5,7 @@ import './uploader.css';
 
 import Dropzone from 'react-dropzone';
 
-import Reader from '../Reader/Reader.js';
-import { readJLQM, displayOn } from '../../actions/actions.js';
+import { readJLQM, displayOn, selectFile } from '../../actions/actions.js';
 
 class Uploader extends Component{
 
@@ -51,7 +50,8 @@ class Uploader extends Component{
       //use a promise instead of this ya dummy
     })
     reader.readAsText(this.state.files[evt.target.value]);
-
+    //make sure other component(s) know that a file is available
+    this.props.selectFile(true,this.state.files[evt.target.value].name)
   }
 
   setJLQM(data){
@@ -97,17 +97,15 @@ class Uploader extends Component{
             </ul>
           </Panel>
         </div>
-        {/* <Reader text={this.props.jlqmRaw}/> */}
-        <Reader />
       </div>
     )
   }
 }
 
-function mapStateToProps(state,ownProps){
-  return{
-    jlqmRaw:state.text
-  }
-}
+// function mapStateToProps(state,ownProps){
+//   return{
+//     jlqmRaw:state.text
+//   }
+// }
 
-export default connect(mapStateToProps,{readJLQM,displayOn})(Uploader)
+export default connect(null,{readJLQM,displayOn,selectFile})(Uploader)
