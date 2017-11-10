@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Panel } from 'react-bootstrap';
+import { Panel, Button, ButtonToolbar, ToggleButtonGroup } from 'react-bootstrap';
 import './uploader.css';
 
 import Dropzone from 'react-dropzone';
@@ -37,9 +37,9 @@ class Uploader extends Component{
 
   }
 
-  selectFile(evt){
+  selectFile(evt,i){
+    console.log('selected ',evt.target,i);
     //this file reading operation shouldn't be done here
-    console.log(evt.target.value);
     const reader = new FileReader();
     this.setJLQM.bind(reader);
     reader.addEventListener("loadend", (evt) =>
@@ -49,9 +49,9 @@ class Uploader extends Component{
       //reader does not work with binding of dispatch action
       //use a promise instead of this ya dummy
     })
-    reader.readAsText(this.state.files[evt.target.value]);
+    reader.readAsText(this.state.files[i]);
     //make sure other component(s) know that a file is available
-    this.props.selectFile(true,this.state.files[evt.target.value].name)
+    this.props.selectFile(true,this.state.files[i].name)
   }
 
   setJLQM(data){
@@ -77,15 +77,15 @@ class Uploader extends Component{
         <div>
             <Panel>
               <p>Accepted files:</p>
-              <ul className="list-group">
-              {
-                this.state.files.map(f => <li className="list-group-item"
-                  key={f.name}
-                  onClick={(evt)=>{this.selectFile(evt)}}>{f.name} - {f.size}
-                  bytes
-                </li>)
-              }
-            </ul>
+              <ButtonToolbar>
+                {
+                  this.state.files.map((f,i) => <Button
+                    key={i}
+                    onClick={(evt)=>{this.selectFile(evt,i)}}>{f.name} - {f.size}
+                    bytes
+                  </Button>)
+                }
+              </ButtonToolbar>
               <p>Rejected files: </p>
               <ul className="list-group">
               {
@@ -101,11 +101,5 @@ class Uploader extends Component{
     )
   }
 }
-
-// function mapStateToProps(state,ownProps){
-//   return{
-//     jlqmRaw:state.text
-//   }
-// }
 
 export default connect(null,{readJLQM,displayOn,selectFile})(Uploader)

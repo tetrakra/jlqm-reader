@@ -17,7 +17,7 @@ export default function jlqm(state = initialState.text, action) {
       console.log('FILE SELECTED');
       let fileStatus = action.payload;
       let fileName = action.fileName || "*.jlqm";
-      return Object.assign({},state,{fileStatus},{fileName})
+      return Object.assign({},state,{fileStatus,fileName,rawText:"",extractedText:""})
     default:
       return state;
   }

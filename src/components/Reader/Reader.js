@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import { displayOff,formatJLQM,selectFile } from '../../actions/actions.js';
-import { Button } from 'react-bootstrap';
+import { Button,Panel } from 'react-bootstrap';
 import './reader.css';
 
 
@@ -39,16 +39,22 @@ class Reader extends Component{
 
   //mapping own prop to state not doing it
   render(){
-    const clickButton = <Button onClick={(evt)=>this.formatText(evt)}>Extract Text from File</Button>;
-    const clearButton = <Button onClick={(evt)=>this.clearOutput(evt)}>Clear Me</Button>;
+    const clickButton = <Button bsStyle="success"
+      onClick={(evt)=>this.formatText(evt)}>
+      Extract Text from File
+    </Button>;
+    const clearButton = <Button bsStyle="danger"
+      onClick={(evt)=>this.clearOutput(evt)}>
+      Clear Me
+    </Button>;
     console.log('reader props @ render:', this.props)
     console.log('reader state @ render:', this.state)
     return(
       <div>
         {this.props.selectedFile && clickButton}
-        <div>
+        <Panel>
           {this.props.formattedText || "Waiting..."}
-        </div>
+        </Panel>
         {this.props.selectedFile && clearButton}
       </div>
     )
