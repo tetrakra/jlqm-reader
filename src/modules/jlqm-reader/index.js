@@ -5,7 +5,7 @@
  * @param {number} fileCount
  * @return {Array}
  */
-module.exports = function(jlqm, fileCount = 1) {
+module.exports = function(jlqm, fileCount) {
   //this reads a string right now, could change to fileList?
   var obj = {};
   var output;
@@ -13,7 +13,7 @@ module.exports = function(jlqm, fileCount = 1) {
   if(typeof jlqm === "string"){
     // output = jlqm.substring(startPos,endPos).split('\n');
     obj = JSON.parse(jlqm);
-    output = obj.MemoObjectList[0].DescRaw
+    output = obj.MemoObjectList[(fileCount || 0)].DescRaw;
     console.log('jlqm reader sending ...', output);
     return output;
   }else{
