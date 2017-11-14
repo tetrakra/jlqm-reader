@@ -1,5 +1,28 @@
-#reader-element{
+#reader-parent{
   padding: 2em;
   margin: 20px auto;
   box-shadow: 2px 4px 8px black;
+}
+
+#reader-parent button.btn.btn-success{
+  margin-right:20px;
+}
+#reader-parent button.btn.btn-danger{
+  margin-left: 20px;
+}
+
+#reader-element{
+  max-width: 66vw;
+  margin:0;
+  padding:1em;
+}
+
+.noshow{
+  visibility: hidden;
+  display: none;
+}
+
+.visible{
+  visibility: visible;
+  display: inline-block;
 }

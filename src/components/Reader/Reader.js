@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { displayOff,formatJLQM,selectFile } from '../../actions/actions.js';
+import { displayOn,displayOff,formatJLQM,selectFile } from '../../actions/actions.js';
 import { Button,Panel } from 'react-bootstrap';
 import './reader.css';
 
@@ -27,6 +27,8 @@ class Reader extends Component{
   formatText(evt){
     //make sure a we have text to format
     this.props.formatJLQM(this.props.rawText);
+    //turn on the display
+    this.props.displayOn();
 
   }
 
@@ -52,7 +54,9 @@ class Reader extends Component{
     return(
       <section id='reader-parent'>
         {this.props.selectedFile && clickButton}
-        <Panel id='reader-element'>
+        <Panel id='reader-element'
+          className={this.state.display ? 'visible' : 'noshow'}
+        >
           { this.state.display && this.props.formattedText }
         </Panel>
         {this.props.selectedFile && clearButton}
@@ -71,4 +75,4 @@ function mapStateToProps(state,ownProps){
 
 }
 
-export default connect(mapStateToProps, { displayOff, formatJLQM, selectFile })(Reader);
+export default connect(mapStateToProps, { displayOn, displayOff, formatJLQM, selectFile })(Reader);

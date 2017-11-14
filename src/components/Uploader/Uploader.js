@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Panel, ToggleButton, ButtonToolbar, ToggleButtonGroup } from 'react-bootstrap';
+import { displayOff } from '../../actions/actions.js';
+import { Panel, ToggleButton,
+  ButtonToolbar, ToggleButtonGroup }
+  from 'react-bootstrap';
 import './uploader.css';
 
 import Dropzone from 'react-dropzone';
 
-import { readJLQM, displayOn, selectFile } from '../../actions/actions.js';
+import { readJLQM, selectFile } from '../../actions/actions.js';
 
 class Uploader extends Component{
 
@@ -39,6 +42,7 @@ class Uploader extends Component{
 
   selectFile(evt,i){
     console.log('selected ',evt.target,i);
+    this.state.files && this.props.displayOff();
     //this file reading operation shouldn't be done here
     const reader = new FileReader();
     this.setJLQM.bind(reader);
@@ -59,8 +63,6 @@ class Uploader extends Component{
     this.setState({rawText:data});
     //dispatch action from here?
     this.props.readJLQM(data)
-    //test display state
-    this.props.displayOn();
   }
 
   render(){
@@ -105,4 +107,12 @@ class Uploader extends Component{
   }
 }
 
-export default connect(null,{readJLQM,displayOn,selectFile})(Uploader)
+function mapStateToProps(state,ownProps){
+  return{
+    display:state.display,
+    selectedFile:state.text.fileStatus
+  }
+
+}
+
+export default connect(mapStateToProps,{readJLQM,selectFile,displayOff})(Uploader)
