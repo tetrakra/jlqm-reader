@@ -14,7 +14,7 @@ module.exports = function(jlqm, fileCount) {
     // output = jlqm.substring(startPos,endPos).split('\n');
     obj = JSON.parse(jlqm);
     output = obj.MemoObjectList[(fileCount || 0)].DescRaw;
-    console.log('jlqm reader sending ...', output);
+    // console.log('jlqm reader sending ...', output);
     return output;
   }else{
     output = "Error, no string";

@@ -50,13 +50,13 @@ class Reader extends Component{
     console.log('reader props @ render:', this.props)
     console.log('reader state @ render:', this.state)
     return(
-      <div>
+      <section id='reader-parent'>
         {this.props.selectedFile && clickButton}
-        <Panel>
-          {this.props.formattedText || "Waiting..."}
+        <Panel id='reader-element'>
+          { this.state.display && this.props.formattedText }
         </Panel>
         {this.props.selectedFile && clearButton}
-      </div>
+      </section>
     )
   }
 }

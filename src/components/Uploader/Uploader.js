@@ -76,7 +76,7 @@ class Uploader extends Component{
         </div>
         <div>
             <Panel>
-              <p>Accepted files:</p>
+              {this.state.files.length ? <p>Accepted files:</p> : <div></div>}
               <ButtonToolbar>
                 {
                   this.state.files.map((f,i) => <Button
@@ -86,7 +86,7 @@ class Uploader extends Component{
                   </Button>)
                 }
               </ButtonToolbar>
-              <p>Rejected files: </p>
+              {this.state.rejected.length ? <p>Rejected files: </p> : <div></div>}
               <ul className="list-group">
               {
                 this.state.rejected.map(f => <li className="list-group-item"
