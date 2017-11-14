@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import { Panel, Button, ButtonToolbar, ToggleButtonGroup } from 'react-bootstrap';
+import { Panel, ToggleButton, ButtonToolbar, ToggleButtonGroup } from 'react-bootstrap';
 import './uploader.css';
 
 import Dropzone from 'react-dropzone';
@@ -78,13 +78,16 @@ class Uploader extends Component{
             <Panel>
               {this.state.files.length ? <p>Accepted files:</p> : <div></div>}
               <ButtonToolbar>
+                <ToggleButtonGroup type="radio" name="file-select">
                 {
-                  this.state.files.map((f,i) => <Button
+                  this.state.files.map((f,i) => <ToggleButton
                     key={i}
+                    value={i}
                     onClick={(evt)=>{this.selectFile(evt,i)}}>{f.name} - {f.size}
                     bytes
-                  </Button>)
+                  </ToggleButton>)
                 }
+                </ToggleButtonGroup>
               </ButtonToolbar>
               {this.state.rejected.length ? <p>Rejected files: </p> : <div></div>}
               <ul className="list-group">
